@@ -98,7 +98,7 @@ Figma Mockups:
 
 Link to the mockup designs:
 
-https://www.figma.com/design/dExh1owQ9cIKYb4zh7v6Uc/wildlife-conservation-hub-design?node-id=0-1&node-type=canvas&t=RZT9s777SXneotO9-0
+https://www.figma.com/proto/bJsDbGB5zPvXR2KlejDnad/Untitled?node-id=2-3&t=PqIzz3gsZIGgmcIG-1
 
 
 **Deployment Plan**
