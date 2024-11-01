@@ -98,7 +98,7 @@ Figma Mockups:
 
 Link to the mockup designs:
 
-https://www.figma.com/proto/bJsDbGB5zPvXR2KlejDnad/Untitled?node-id=2-3&t=PqIzz3gsZIGgmcIG-1
+https://www.figma.com/design/97RJwIfFtXL8QFfaOaiq9a/WCH-designs?node-id=2-3&t=XKa36oCBiW7GwNCV-1
 
 
 **Deployment Plan**
