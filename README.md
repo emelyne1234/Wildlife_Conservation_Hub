@@ -88,19 +88,6 @@ Testing: To run tests:
 npm test
 
 
-**Designs**
-
-Figma Mockups
-
-Here are some design assets to give you a better idea of the user experience and flow of the Wildlife Conservation Hub:
-
-Figma Mockups:
-
-Link to the mockup designs:
-
-https://www.figma.com/design/97RJwIfFtXL8QFfaOaiq9a/WCH-designs?node-id=2-3&t=XKa36oCBiW7GwNCV-1
-
-
 **Deployment Plan**
 
 The Wildlife Conservation Hub is deployed using modern DevOps practices. Here's the detailed deployment strategy:
