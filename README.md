@@ -23,6 +23,7 @@ Contributing
 License
 
 
+
 **Description**
 
 Wildlife Conservation Hub (WCH) is a digital platform dedicated to fostering collaboration among conservationists, researchers, and the general public. The platform facilitates wildlife conservation efforts through education, real-time data sharing, and collaboration on conservation initiatives. The WCH platform aims to harness the power of technology to make conservation efforts more effective and transparent while engaging a broader audience.
@@ -86,6 +87,12 @@ Your application will run on http://localhost:3000.
 Testing: To run tests:
 
 npm test
+
+**Design**
+
+Designed in Figma. Link to the Figma design:
+
+https://www.figma.com/design/4lQCaXgk3ghbUVIrnbnS3K/wildlife-conservation-hub-design?node-id=0-1&t=NdfvUM38IrisNfeD-1
 
 
 **Deployment Plan**
