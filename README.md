@@ -101,7 +101,10 @@ The Wildlife Conservation Hub is deployed using modern DevOps practices. Here's 
 
 Deployment Platform
 
-Render.com: This platform is used for both frontend and backend deployment, ensuring smooth scaling and continuous availability.
+Vercel
+
+Link to the deployment : https://wch-prep.vercel.app/
+
 
 CI/CD Pipeline
 
