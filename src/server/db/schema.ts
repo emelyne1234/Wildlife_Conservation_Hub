@@ -32,14 +32,61 @@ export const roles = pgTable("roles", {
 });
 export const forums = pgTable("forums", {
   id: uuid("id").primaryKey().defaultRandom(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+  created_at: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+export const posts = pgTable("posts", {
+  id: uuid("id").primaryKey().defaultRandom(),
   userId: uuid("user_id").references(() => users.id, { onDelete: "cascade" }),
-  title: varchar("title", { length: 255 }).notNull(),
+  forumId: uuid("forum_id")
+    .references(() => forums.id, { onDelete: "cascade" })
+    .notNull(),
   content: text("content").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
-export const forumsComments = pgTable("forums_comments", {
+export const forumsPostComments = pgTable("forums_comments", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  postId: uuid("post_id")
+    .references(() => posts.id, { onDelete: "cascade" })
+    .notNull(),
+  userId: uuid("user_id")
+    .references(() => users.id, { onDelete: "cascade" })
+    .notNull(),
+  content: text("content").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const forumPostLikes = pgTable("forum_likes", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  postId: uuid("post_id")
+    .references(() => posts.id, { onDelete: "cascade" })
+    .notNull(),
+  userId: uuid("user_id")
+    .references(() => users.id, { onDelete: "cascade" })
+    .notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const postCommentReplies = pgTable("postComment_Replies", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  commentId: uuid("comment_Id")
+    .references(() => forumsPostComments.id, { onDelete: "cascade" })
+    .notNull(),
+  userId: uuid("user_id")
+    .references(() => users.id, { onDelete: "cascade" })
+    .notNull(),
+  content: text("content").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const forumMembers = pgTable("forumMembers", {
   id: uuid("id").primaryKey().defaultRandom(),
   forumId: uuid("forum_id")
     .references(() => forums.id, { onDelete: "cascade" })
@@ -47,9 +94,7 @@ export const forumsComments = pgTable("forums_comments", {
   userId: uuid("user_id")
     .references(() => users.id, { onDelete: "cascade" })
     .notNull(),
-  comment: text("comment").notNull(),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  joined_at: timestamp("joined_at").defaultNow().notNull(),
 });
 
 export const sessions = pgTable("sessions", {
@@ -102,18 +147,6 @@ export const articlesComments = pgTable("articles_comments", {
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
 
-export const forumLikes = pgTable("forum_likes", {
-  id: uuid("id").primaryKey().defaultRandom(),
-  forumId: uuid("forum_id")
-    .references(() => forums.id, { onDelete: "cascade" })
-    .notNull(),
-  userId: uuid("user_id")
-    .references(() => users.id, { onDelete: "cascade" })
-    .notNull(),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().notNull(),
-});
-
 export const animals = pgTable("animals", {
   id: uuid("id").primaryKey().defaultRandom(),
   name: varchar("name", { length: 100 }).notNull(),
@@ -133,7 +166,8 @@ export const projects = pgTable("projects", {
   location: varchar("location", { length: 255 }).notNull(),
   startDate: timestamp("start_date", { mode: "date" }).notNull(),
   endDate: timestamp("end_date", { mode: "date" }).notNull(),
-  impactMetrics: jsonb("impact_metrics").notNull(),
+  impactMetrics: jsonb("impact_metrics"),
+  image: varchar("image", { length: 300 }),
   fundingStatus: varchar("funding_status", { length: 10 }).notNull(),
   evaluation: text("evaluation").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -205,6 +239,7 @@ export const resources = pgTable("resources", {
   id: uuid("id").primaryKey().defaultRandom(),
   title: varchar("title", { length: 100 }).notNull(),
   description: text("description").notNull(),
+  category: varchar("category", { length: 100 }).notNull(),
   type: varchar("type", {
     enum: ["video", "article", "infographic", "pdf"],
     length: 30,
